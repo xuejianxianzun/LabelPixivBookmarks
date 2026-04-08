@@ -2990,7 +2990,7 @@ async function updateWorkInfo(bookmarkTags) {
   const el = await waitForDom(WORK_SECTION);
   let workInfo = {};
   for (let i = 0; i < 100; i++) {
-    workInfo = Object.values(el)[0]["memoizedProps"]["children"][2]["props"];
+    workInfo = Object.values(el)[0]["memoizedProps"]["children"][3]["props"];
     if (Object.keys(workInfo).length) break;
     else await delay(200);
   }
@@ -3014,6 +3014,7 @@ async function initializeVariables() {
       token = await fetchTokenPolyfill();
       pageInfo.userId = window.location.href.match(/users\/(\d+)/)?.[1];
       pageInfo.client = { userId: uid, lang, token };
+      if (DEBUG) console.log("[Label Bookmarks] Page Info", pageInfo);
     } catch (err) {
       console.log(err);
       console.log("[Label Bookmarks] Initializing Failed");
