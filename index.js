@@ -57,7 +57,7 @@ const WORK_CONTAINER = "section ul"; // 仅包含作品
 const PAGE_BODY = '#__next [data-overlay-container="true"] > div:first-child'; // 自主页、收藏起下方
 const EDIT_BUTTON_CONTAINER = "section > div:first-child"; // 管理收藏按钮父容器，包含左侧作品文字
 const REMOVE_BOOKMARK_CONTAINER =
-  "section > div:nth-child(3) > div > div:first-child";
+  "section > div:nth-child(2) > div > div:first-child";
 const WORK_NUM = "section h2 + div";
 const ADD_TAGS_MODAL_ENTRY = 'ul[role="listbox"] button, ul li button'; // 原生添加标签窗口中标签按钮
 const ALL_TAGS_BUTTON =
@@ -3246,7 +3246,7 @@ async function injectElements() {
         return (
           section &&
           section.children.length >= 3 &&
-          section.children[2].querySelector('[role="button"]')
+          section.children[2].querySelector('input[type="checkbox"]')
         );
       };
 
@@ -3255,6 +3255,7 @@ async function injectElements() {
         const inEditMode = isInEditMode();
 
         if (inEditMode) {
+          if (DEBUG) console.log("[Label Bookmarks] In Edit Mode");
           // open edit mode
           let removeBookmarkContainer = document.querySelector(
             REMOVE_BOOKMARK_CONTAINER,
